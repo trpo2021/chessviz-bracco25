@@ -128,37 +128,3 @@ int main()
 
     return 0;
 }
-
-
-// void move(char *array, int size, int *a, int* b, int *c, int *d)
-// {
-//     for(int i = 0; i < size; i++)
-//     {
-//         if((array[i] >= 97) && (array[i] <= 104))
-//         {
-//             array[i] = array[i] - 48;
-//         }
-//     }
- 
-//     // char a, b, c, d;
-//     // a = array[0];
-//     // b = array[1];
-//     // c = array[3];
-//     // d = array[4];
-//     a =(int)array[0];
-//     b =(int)array[1];
-//     c =(int)array[3];
-//     d =(int)array[4];
-
-
-//     char tmp;
-
-//     // if(board[b][a] != 46)
-//     // {
-//     //     tmp = board[b][a];
-//     //     board[b][a] = 46;
-//     //     board[d][c] = tmp;
-//     // }
-
-// }
-
