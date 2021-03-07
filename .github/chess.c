@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 
-// void move(char *array, int size, int *a, int* b, int *c, int *d);
 int main()
 {
     char board[9][9];
@@ -11,7 +10,7 @@ int main()
     {
         for(int j = 0; j < 9; j++)
         {
-            board[i][j] = 46;
+            board[i][j] = '.';
         }
     }
 
@@ -27,33 +26,33 @@ int main()
 
     for (int i =1; i < 9; i++)
     {
-        board[i][1] = 112;
-        board[i][6] = 80;
+        board[i][1] = 'p';
+        board[i][6] = 'P';
     }
 
-    board[1][0] = 114;
-    board[8][0] = 114;
+    board[1][0] = 'r';
+    board[8][0] = 'r';
 
-    board[1][7] = 114 - 32;
-    board[8][7] = 114 - 32;
+    board[1][7] = 'R';
+    board[8][7] = 'R';
 
-    board[2][0] = 110;
-    board[7][0] = 110;
+    board[2][0] = 'n';
+    board[7][0] = 'n';
 
-    board[2][7] = 110 - 32;
-    board[7][7] = 110 - 32;
+    board[2][7] = 'N';
+    board[7][7] = 'N';
 
-    board[3][0] = 98;
-    board[6][0] = 98;
+    board[3][0] = 'b';
+    board[6][0] = 'b';
 
-    board[3][7] = 98 - 32;
-    board[6][7] = 98 - 32;
+    board[3][7] = 'B';
+    board[6][7] = 'B';
 
-    board[4][0] = 113;
-    board[5][0] = 107;
+    board[4][0] = 'q';
+    board[5][0] = 'k';
 
-    board[4][7] = 113 - 32; 
-    board[5][7] = 107 - 32;
+    board[4][7] = 'Q'; 
+    board[5][7] = 'K';
 
 
 
@@ -86,21 +85,21 @@ int main()
     printf("\n");
     printf("\n");
     
-    int a, b, c, d;
+    int start_x, start_y, end_x, end_y;
 
-    a =(int)input[0];
-    b =(int)input[1];
-    c =(int)input[3];
-    d =(int)input[4];
+    start_x =(int)input[0];
+    start_y =(int)input[1];
+    end_x =(int)input[3];
+    end_y =(int)input[4];
 
     printf("\n");
-    a = a - 48;
-    b = b - 48 - 1;
-    c = c - 48;
-    d = d - 48 - 1;
+    start_x = start_x - 48;
+    start_y = start_y - 48 - 1;
+    end_x = end_x - 48;
+    end_y = end_y - 48 - 1;
     printf("\n");
 
-    if((a >= 8) || (b >= 8 ) || (c >= 8) || (d >= 8))
+    if((start_x >= 8) || (start_y >= 8 ) || (end_x >= 8) || (end_y >= 8))
     {
         printf("неверные значения хода");
         return 0;
@@ -110,11 +109,11 @@ int main()
     
     
     char tmp;
-    if(board[a][b] != 46)
+    if(board[start_x][start_y] != 46)
     {
-        tmp = board[a][b];
-        board[a][b] = 46;
-        board[c][d] = tmp;
+        tmp = board[start_x][start_y];
+        board[start_x][start_y] = 46;
+        board[end_x][end_y] = tmp;
     }
 
     for(int i = 0; i < 9; i++)
