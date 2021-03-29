@@ -1,4 +1,6 @@
 #include "chess_f.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void display(char array[][9])
 {
