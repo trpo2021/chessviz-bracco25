@@ -1,4 +1,4 @@
 #ignore object files 
 *.a
-chess
-chessves
+*.d
+*.o
