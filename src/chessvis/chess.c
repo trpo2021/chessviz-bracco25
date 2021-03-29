@@ -1,4 +1,6 @@
 #include <libchessvis/chess_f.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
