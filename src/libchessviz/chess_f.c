@@ -149,7 +149,6 @@ int move(char board[][9], char* input)
 
     int end = 0;
     end = found_king(board);
-    display(board);
 
     if (end == 0) {
         return 1;
