@@ -30,6 +30,7 @@ int main()
         if (check != 1) {
             return 0;
         }
+        display(board);
     }
     fclose(turn);
     return 0;
