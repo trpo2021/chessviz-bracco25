@@ -38,13 +38,15 @@ CTEST(input, error_name_1)
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(move, figure_2)
+CTEST(move, chekc_to_figure_1)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"vc7-cf"};
+    char figure = 'b';
+    int start_x = 5;
+    int start_y = 7;
 
-    const int result = move(board, qwer);
+    const int result = chekc_to_figure(board, figure, start_x, start_y);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -62,25 +64,15 @@ CTEST(input, figure_3)
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(move, start_1)
+CTEST(move, chekc_to_figure_2)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"Pc5-c5"};
+    char figure = 'b';
+    int start_x = 2;
+    int start_y = 1;
 
-    const int result = move(board, qwer);
-
-    const int expected = 0;
-    ASSERT_EQUAL(expected, result);
-}
-
-CTEST(move, start_2)
-{
-    char board[9][9];
-    create_board(board);
-    char qwer[10] = {"Pc2-c4"};
-
-    const int result = move(board, qwer);
+    const int result = chekc_to_figure(board, figure, start_x, start_y);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -90,9 +82,11 @@ CTEST(move, end_1)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"pc2-c9"};
+    char moving = '-';
+    int end_x = 2;
+    int end_y = 6;
 
-    const int result = move(board, qwer);
+    const int result = chekc_to_moving(board, moving, end_x, end_y);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -102,21 +96,11 @@ CTEST(move, end_2)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"pc2-v4"};
+    char moving = '-';
+    int end_x = 9;
+    int end_y = 6;
 
-    const int result = move(board, qwer);
-
-    const int expected = 0;
-    ASSERT_EQUAL(expected, result);
-}
-
-CTEST(move, figure_4)
-{
-    char board[9][9];
-    create_board(board);
-    char qwer[10] = {"kc2-c4"};
-
-    const int result = move(board, qwer);
+    const int result = chekc_to_moving(board, moving, end_x, end_y);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -126,9 +110,10 @@ CTEST(move, turn)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"pc2xc4"};
 
-    const int result = move(board, qwer);
+    char moving = 'x';
+
+    const int result = chekc_to_moving(board, moving, 5, 3);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -138,9 +123,10 @@ CTEST(move, turn_2)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"pc2-c7"};
 
-    const int result = move(board, qwer);
+    char moving = '-';
+
+    const int result = chekc_to_moving(board, moving, 5, 6);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -150,21 +136,21 @@ CTEST(move, turn_3)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"pc2-c9"};
 
-    const int result = move(board, qwer);
+    char moving = 'x';
+
+    const int result = chekc_to_moving(board, moving, 6, 3);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(move, turn_4)
+CTEST(move, figure_4)
 {
     char board[9][9];
     create_board(board);
-    char qwer[10] = {"Pe5-c5"};
 
-    const int result = move(board, qwer);
+    const int result = chekc_to_figure(board, 'P', 1, 1);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
@@ -285,30 +271,6 @@ CTEST(input, error_name_12)
     char qwer[10] = {"Pc7-c5t"};
 
     const int result = right_intput(qwer);
-
-    const int expected = 0;
-    ASSERT_EQUAL(expected, result);
-}
-
-CTEST(move, turn_5)
-{
-    char board[9][9];
-    create_board(board);
-    char qwer[10] = {"Pe5Xc5"};
-
-    const int result = move(board, qwer);
-
-    const int expected = 0;
-    ASSERT_EQUAL(expected, result);
-}
-
-CTEST(move, turn_6)
-{
-    char board[9][9];
-    create_board(board);
-    char qwer[10] = {"Pe5-c5"};
-
-    const int result = move(board, qwer);
 
     const int expected = 0;
     ASSERT_EQUAL(expected, result);
