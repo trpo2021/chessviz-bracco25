@@ -2,49 +2,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int right_intput(char* input)
+int right_intput(char *input)
 {
     char save[10];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++)
+    {
         save[i] = input[i];
     }
 
-    if (!(save[0] == 'p' || save[0] == 'P' || save[0] == 'R' || save[0] == 'r'
-          || save[0] == 'n' || save[0] == 'N' || save[0] == 'B'
-          || save[0] == 'b' || save[0] == 'q' || save[0] == 'Q'
-          || save[0] == 'K' || save[0] == 'k')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if (!(save[0] == 'p' || save[0] == 'P' || save[0] == 'R' || save[0] == 'r' || save[0] == 'n' || save[0] == 'N' || save[0] == 'B' || save[0] == 'b' || save[0] == 'q' || save[0] == 'Q' || save[0] == 'K' || save[0] == 'k'))
+    {
+
         return 0;
     }
 
-    if (!(save[1] >= 'a' && save[1] <= 'h')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if (!(save[1] >= 'a' && save[1] <= 'h'))
+    {
+
         return 0;
     }
 
-    if (!(save[2] >= '1' && save[2] < '9')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if (!(save[2] >= '1' && save[2] < '9'))
+    {
+
         return 0;
     }
 
-    if ((save[3] != '-' && save[3] != 'x')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if ((save[3] != '-' && save[3] != 'x'))
+    {
+
         return 0;
     }
 
-    if (!(save[4] >= 'a' && save[4] <= 'h')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if (!(save[4] >= 'a' && save[4] <= 'h'))
+    {
+
         return 0;
     }
 
-    if (!(save[5] >= '1' && save[5] < '9')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if (!(save[5] >= '1' && save[5] < '9'))
+    {
+
         return 0;
     }
 
-    if ((save[6] >= '0' && save[6] < '9') || (save[6] >= 'A' && save[6] <= 'Z')
-        || (save[6] >= 'a' && save[6] <= 'z')) {
-        printf("ошибка ввода. пересмотрите входные значения");
+    if ((save[6] >= '0' && save[6] < '9') || (save[6] >= 'A' && save[6] <= 'Z') || (save[6] >= 'a' && save[6] <= 'z'))
+    {
+
         return 0;
     }
 
@@ -53,21 +57,26 @@ int right_intput(char* input)
 
 void create_board(char board[][9])
 {
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
             board[i][j] = '.';
         }
     }
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++)
+    {
         board[1 + i][8] = 97 + i;
     }
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++)
+    {
         board[0][0 + i] = 49 + i;
     }
 
-    for (int i = 1; i < 9; i++) {
+    for (int i = 1; i < 9; i++)
+    {
         board[i][1] = 'p';
         board[i][6] = 'P';
     }
@@ -99,25 +108,29 @@ void create_board(char board[][9])
 
 void display(char array[][9])
 {
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
             printf("%c ", array[j][i]);
         }
         printf("\n");
     }
 }
 
-void translate_to_digit(char* input)
+void translate_to_digit(char *input)
 {
-    for (int i = 0; i < 5; i++) { // перевод массива в числа - теперь будем
-                                  // смотреть на фигуры по ASCI-коду
-        if ((input[i] >= 97) && (input[i] <= 104)) {
+    for (int i = 0; i < 5; i++)
+    { // перевод массива в числа - теперь будем
+        // смотреть на фигуры по ASCI-коду
+        if ((input[i] >= 97) && (input[i] <= 104))
+        {
             input[i] = input[i] - 48;
         }
     }
 }
 
-int move(char board[][9], char* input)
+int move(char board[][9], char *input)
 {
     translate_to_digit(input);
 
@@ -136,12 +149,14 @@ int move(char board[][9], char* input)
 
     int check = 0;
     check = all_check(board, input, start_x, start_y, end_x, end_y);
-    if (check != 1) {
+    if (check != 1)
+    {
         return 0;
     }
 
     char tmp;
-    if (board[start_x][start_y] != 46) {
+    if (board[start_x][start_y] != 46)
+    {
         tmp = board[start_x][start_y];
         board[start_x][start_y] = 46;
         board[end_x][end_y] = tmp;
@@ -150,79 +165,103 @@ int move(char board[][9], char* input)
     int end = 0;
     end = found_king(board);
 
-    if (end == 0) {
+    if (end == 0)
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
 
 int all_check(
-        char board[][9],
-        char* input,
-        int start_x,
-        int start_y,
-        int end_x,
-        int end_y)
+    char board[][9],
+    char *input,
+    int start_x,
+    int start_y,
+    int end_x,
+    int end_y)
 {
     int result = 1;
 
     char figure = input[0];
-    if (figure == '2') {
+    if (figure == '2')
+    {
         figure = 'b';
     }
 
     char moving = input[3];
 
     result = chekc_to_figure(board, figure, start_x, start_y);
-    if (result != 1) {
+    if (result != 1)
+    {
         printf("ERROR: неверно выбранная фигура\n");
         return 0;
     }
     result = check_to_right_move(start_x, start_y, end_x, end_y);
-    if (result != 1) {
+    if (result != 1)
+    {
         printf("ERROR: неверный ход (выход за доску)\n");
         return 0;
     }
     result = chekc_to_moving(board, moving, end_x, end_y);
+
+    if (result != 1)
+    {
+        printf("неверные значения хода. неверный тип хода");
+        return 0;
+    }
 
     return result;
 }
 
 int chekc_to_figure(char board[][9], char figure, int start_x, int start_y)
 {
-    if (figure == board[start_x][start_y]) {
+    if (figure == board[start_x][start_y])
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
 
 int check_to_right_move(int start_x, int start_y, int end_x, int end_y)
 {
-    if ((start_x > 8) || (start_y > 8) || (end_x > 8) || (end_y > 8)) {
+    if ((start_x > 8) || (start_y > 8) || (end_x > 8) || (end_y > 8))
+    {
         return 0;
-    } else {
+    }
+    else
+    {
         return 1;
     }
 }
 
 int chekc_to_moving(char board[][9], char moving, int end_x, int end_y)
 {
-    if (moving == '-') {
-        if (board[end_x][end_y] == '.') {
+    if (moving == '-')
+    {
+        if (board[end_x][end_y] == '.')
+        {
             return 1;
-        } else {
-            printf("неверные значения хода. неверный тип хода");
+        }
+        else
+        {
             return 0;
         }
     }
 
-    if (moving == 'x') {
-        if (board[end_x][end_y] != '.') {
+    if (moving == 'x')
+    {
+        if (board[end_x][end_y] != '.')
+        {
             return 1;
-        } else {
-            printf("неверные значения хода. неверный тип хода");
+        }
+        else
+        {
             return 0;
         }
     }
@@ -235,24 +274,30 @@ int found_king(char board[][9])
     int found_K = 0;
     int found_k = 0;
 
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            if (board[i][j] == 'k') {
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (board[i][j] == 'k')
+            {
                 found_k = 1;
             }
 
-            if (board[i][j] == 'K') {
+            if (board[i][j] == 'K')
+            {
                 found_K = 1;
             }
         }
     }
 
-    if (found_k == 0) {
+    if (found_k == 0)
+    {
         printf("ИГРА ОКОНЧЕНА \n победил нижний игрок!!!\n");
         return 1;
     }
 
-    if (found_K == 0) {
+    if (found_K == 0)
+    {
         printf("ИГРА ОКОНЧЕНА \n победил верхний игрок!!!\n");
         return 1;
     }
