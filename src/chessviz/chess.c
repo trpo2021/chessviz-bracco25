@@ -11,27 +11,24 @@ int main()
 
     char qwer[10];
 
-    FILE *turn;
+    FILE* turn;
     turn = fopen("bin/turn.txt", "r");
 
     int check = 1;
     int gr = 1;
 
-    while (!feof(turn))
-    {
+    while (!feof(turn)) {
         fscanf(turn, "%s", qwer);
 
         gr = right_intput(qwer);
-        if (gr != 1)
-        {
+        if (gr != 1) {
             printf("ошибка ввода. пересмотрите входные значения");
             return 0;
         }
 
         check = move(board, qwer);
 
-        if (check != 1)
-        {
+        if (check != 1) {
             return 0;
         }
         display(board);
