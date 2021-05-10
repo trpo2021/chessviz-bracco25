@@ -1,0 +1,6 @@
+#ignore object files 
+chessviz
+test
+*.a
+*.d
+*.o
